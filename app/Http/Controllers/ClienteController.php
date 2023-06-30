@@ -69,7 +69,36 @@ class ClienteController extends Controller
         return Cliente::all();
     }
 
-
+    /**
+     * Registrar un nuevo cliente
+     * @OA\Post (
+     *     path="/api/clientes",
+     *     tags={"Cliente"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="nombres", type="string"),
+     *             @OA\Property(property="apellidos", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Created",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="number", example=1),
+     *             @OA\Property(property="nombres", type="string", example="Aderson Felix"),
+     *             @OA\Property(property="apellidos", type="string", example="Jara Lazaro"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="The given data was invalid.")
+     *         )
+     *     )
+     * )
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -119,7 +148,7 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente =  Cliente::find($id);
-        
+
         if (is_null($cliente)) {
             return response()->json('No se pudo realizar correctamente la operación', 404);
         }
@@ -127,7 +156,44 @@ class ClienteController extends Controller
         return $cliente;
     }
 
-
+    /**
+     * Actualizar la información de un cliente
+     * @OA\Put (
+     *     path="/api/clientes/{id}",
+     *     tags={"Cliente"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="nombres", type="string"),
+     *             @OA\Property(property="apellidos", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="number", example=1),
+     *             @OA\Property(property="nombres", type="string", example="Aderson Felix"),
+     *             @OA\Property(property="apellidos", type="string", example="Jara Lazaro"),
+     *             @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
+     *             @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="NOT FOUND",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="No query results for model.")
+     *         )
+     *     )
+     * )
+     */
     public function update(Request $request, Cliente $cliente)
     {
         $request->validate([
@@ -142,7 +208,30 @@ class ClienteController extends Controller
         return $cliente;
     }
 
-
+    /**
+     * Eliminar un cliente
+     * @OA\Delete (
+     *     path="/api/clientes/{id}",
+     *     tags={"Cliente"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="No Content"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="No query results for model.")
+     *         )
+     *     )
+     * )
+     */
     public function destroy($id)
     {
         $cliente = Cliente::find($id);
