@@ -249,14 +249,6 @@
                                         "apellidos": {
                                             "type": "string",
                                             "example": "Jara Lazaro"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "example": "2023-02-23T00:09:16.000000Z"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "example": "2023-02-23T12:33:45.000000Z"
                                         }
                                     },
                                     "type": "object"

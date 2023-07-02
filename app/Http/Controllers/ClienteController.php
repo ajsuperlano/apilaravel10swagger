@@ -181,8 +181,7 @@ class ClienteController extends Controller
      *             @OA\Property(property="id", type="number", example=1),
      *             @OA\Property(property="nombres", type="string", example="Aderson Felix"),
      *             @OA\Property(property="apellidos", type="string", example="Jara Lazaro"),
-     *             @OA\Property(property="created_at", type="string", example="2023-02-23T00:09:16.000000Z"),
-     *             @OA\Property(property="updated_at", type="string", example="2023-02-23T12:33:45.000000Z")
+     *     
      *         )
      *     ),
      *     @OA\Response(
@@ -232,6 +231,7 @@ class ClienteController extends Controller
      *     )
      * )
      */
+
     public function destroy($id)
     {
         $cliente = Cliente::find($id);
