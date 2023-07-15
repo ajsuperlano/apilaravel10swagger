@@ -64,8 +64,9 @@ class ClienteController extends Controller
      * )
      */
 
-    public function index()
+    public function index(Request $request)
     {
+        dd($request->all());
         return Cliente::all();
     }
 
@@ -181,7 +182,7 @@ class ClienteController extends Controller
      *             @OA\Property(property="id", type="number", example=1),
      *             @OA\Property(property="nombres", type="string", example="Aderson Felix"),
      *             @OA\Property(property="apellidos", type="string", example="Jara Lazaro"),
-     *     
+     *
      *         )
      *     ),
      *     @OA\Response(
